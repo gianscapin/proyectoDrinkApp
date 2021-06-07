@@ -37,6 +37,14 @@ metodo: getProducts() - GET
 
 Sistema - Se ven todos los productos en stock
 
+Caso de uso 3: *Obtener productos*
+Usuario - Agregar producto a nuestra base de datos mediante un json:
+endpoint: /api/products
+metodo: getProducts() - GET
+
+
+Sistema - Se ven todos los productos en stock
+
 
 ```bash
 pip install foobar
