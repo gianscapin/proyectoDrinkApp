@@ -1,69 +1,152 @@
 # DrinkApp
 
+  
+
 DrinkApp es una aplicación de compra de bebidas con y sin alcohol.
+
+  
 
 ## Funcionalidades
 
-Para efectuar la compra, la aplicación cuenta con las siguientes funcionalidades:
+### Productos
 
-Caso de uso 1: *Agregar producto*
-Usuario - Agregar producto a nuestra base de datos mediante un json:
-endpoint: /api/product
-metodo: addProduct() - POST
+  
 
-[ ] {
-       
-       "name":"", //nombre del producto
-       
-       "price":, //precio unitario 
-       
-       "description":"", 
-       
-       "brand":"",
-       
-       "category":"", 
-      
-       "alcohol": true / false //tiene alcohol
- 
-       }
+Para efectuar la compra de un producto, la aplicación cuenta con las siguientes funcionalidades:
 
-Sistema registra producto en colección 'products'
+  
 
-Caso de uso 2: *Obtener productos*
-Usuario - Agregar producto a nuestra base de datos mediante un json:
-endpoint: /api/products
-metodo: getProducts() - GET
+### Casos de uso
+
+ **Agregar producto**
+
+Endpoint:  `/api/product`
+
+Método: addProduct(product) - **POST**
+
+Para agregar un producto se tendrá que enviar un json con este cuerpo: 
+
+     {
+    
+	    "name":"", //nombre del producto
+	    
+	    "price":, //precio unitario
+	    
+	    "description":"", // descripción del producto
+	    
+	    "brand":"", // marca del producto
+	    
+	    "category":"", // categoría del producto
+	    
+	    "alcohol": true / false //tiene alcohol
+    
+    }
+Se agregará a nuestra base de datos MongoDB en la colección *products*.
+
+  
+
+---
+  
 
 
-Sistema - Se ven todos los productos en stock
+**Obtener productos**
 
-Caso de uso 3: *Obtener productos*
-Usuario - Agregar producto a nuestra base de datos mediante un json:
-endpoint: /api/products
-metodo: getProducts() - GET
+Endpoint: `/api/products`
+
+Método: getProducts() - **GET**
+
+Utilizando el get en nuestro endpoint nuestra api devolverá en formato json todos los productos almacenados en nuestra base de datos.
+
+---
+
+  
+
+**Modificar productos**
 
 
-Sistema - Se ven todos los productos en stock
+Endpoint: `/api/products/:idProducto`
+
+Método: updateProduct(product) - **PUT**
+
+Se tendrá que saber el id del producto para modificarlo y completar el json de la misma manera que en el caso de agregar el producto. Al completar y enviar el request habrá una respuesta positiva (status 200) donde nos comunicará el que producto ha sido modificado o una respuesta negativa (status 404) comuniucando que el producto no ha sido encontrado.
+
+---
+**Eliminar producto**
+Endpoint: `/api/products/:idProducto`
+
+Método: deleteProduct(idProducto) - **DELETE**
+
+Para eliminar un producto se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del producto a eliminar.
+Recibiremos una respuesta positiva (status 200) comunicando que el producto ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un producto con el id solicitado.
+
+--
+
+### Clientes
+De la misma manera que en productos, tenemos otra colección en nuestra base de datos destinadas para los clientes con las mismas funcionalidades.
+
+**Agregar cliente**
+
+Endpoint:  `/api/client`
+
+Método: addClient(client) - **POST**
+
+Para agregar un cliente se tendrá que enviar un json con este cuerpo: 
+
+     {
+    
+	    "name":"", //nombre del producto
+	    
+	    "price":, //precio unitario
+	    
+	    "description":"", // descripción del producto
+	    
+	    "brand":"", // marca del producto
+	    
+	    "category":"", // categoría del producto
+	    
+	    "alcohol": true / false //tiene alcohol
+    
+    }
+Se agregará a nuestra base de datos MongoDB en la colección *clients*.
+
+  
+
+---
+  
 
 
-```bash
-pip install foobar
-```
+**Obtener clientes**
 
-## Usage
+Endpoint: `/api/clients`
 
-```python
-import foobar
+Método: getClients() - **GET**
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
+Utilizando el get en nuestro endpoint nuestra api devolverá en formato json todos los productos almacenados en nuestra base de datos.
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+---
 
-Please make sure to update tests as appropriate.
+  
 
-## License
+**Modificar cliente**
+
+
+Endpoint: `/api/clients/:idClient`
+
+Método: updateClient(client) - **PUT**
+
+Se tendrá que saber el id del cliente para modificarlo y completar el json de la misma manera que en el caso de agregar el producto. Al completar y enviar el request habrá una respuesta positiva (status 200) donde nos comunicará que el cliente ha sido modificado o una respuesta negativa (status 404) comunicando que el cliente no ha sido encontrado.
+
+---
+**Eliminar cliente**
+Endpoint: `/api/clients/:idCliente`
+
+Método: deleteClient(idClient) - **DELETE**
+
+Para eliminar un cliente se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del cliente a eliminar.
+Recibiremos una respuesta positiva (status 200) comunicando que el cliente ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un cliente con el id solicitado.
+
+  
+
+## Licencia
+
 [MIT](https://choosealicense.com/licenses/mit/)

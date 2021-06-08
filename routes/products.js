@@ -3,6 +3,11 @@ const router = express.Router();
 const dataProduct = require('../data/productdb');
 const joi = require('joi');
 
+// /api/products
+
+
+// GET
+
 router.get('/', async(req, res, next) => {
     let products = await dataProduct.getProducts();
     res.json(products);
@@ -16,6 +21,8 @@ router.get('/:id', async(req,res) => {
         res.status(404).send('No se encontro el producto');
     }
 });
+
+// POST
 
 router.post('/', async (req,res) => {
     const schema = joi.object({
@@ -33,17 +40,19 @@ router.post('/', async (req,res) => {
     } else {
         let product = req.body;
         product = await dataProduct.addProduct(product);
-        res.json(product);
+        res.status(200).send('Producto agregado.');
     };
 });
 
+// PUT
+
 router.put('/:id', async (req,res) => {
     const schema = joi.object({
-        name: joi.string().alphanum().min(3),
-        price: joi.number().min(1).max(10000000),
-        description: joi.string().alphanum().min(3),
-        brand: joi.string().alphanum().min(3),
-        category: joi.string().alphanum().min(3),
+        name: joi.string().min(3).required(),
+        price: joi.number().min(1).max(10000000).required(),
+        description: joi.string().min(3).required(),
+        brand: joi.string().min(3).required(),
+        category: joi.string().min(3).required(),
         alcohol: joi.boolean()  
     });
     const result = schema.validate(req.body);
@@ -53,10 +62,13 @@ router.put('/:id', async (req,res) => {
     } else {
         let product = req.body;
         product._id = req.params.id;
-        dataProduct.updateProduct(product);
-        res.json(product);
+        product = await dataProduct.updateProduct(product);
+        res.status(200).send('Producto modificado.');
+        //res.json(product);
     };
 });
+
+// DELETE
 
 router.delete('/:id', async (req, res)=>{
     const product = await dataProduct.getProduct(req.params.id)
