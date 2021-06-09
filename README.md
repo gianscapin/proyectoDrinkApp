@@ -119,7 +119,7 @@ Endpoint: `/api/clients`
 
 Método: getClients() - **GET**
 
-Utilizando el get en nuestro endpoint nuestra api devolverá en formato json todos los productos almacenados en nuestra base de datos.
+Utilizando el get en nuestro endpoint nuestra api devolverá en formato json todos los productos almacenados en nuestra base de datos. Por medio de la autenticación que se explicará más adelante.
 
 ---
 
@@ -143,7 +143,10 @@ Método: deleteClient(idClient) - **DELETE**
 Para eliminar un cliente se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del cliente a eliminar.
 Recibiremos una respuesta positiva (status 200) comunicando que el cliente ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un cliente con el id solicitado.
 
-  
+**Autenticación**
+
+Al agregar un cliente en `/api/clients`, para poder acceder a la cuenta, se accede en `/api/clients/login/`, se validará el email y la contraseña. Si un dato es incorrecto devolverá un mensaje comunicando que las credenciales no son válidas, de lo contrario se devolverá el cliente y un token.
+ Mediante el token se podrá acceder al `GET` de clients, por medio la implementación del middleware **auth**.
 
 ## Licencia
 
