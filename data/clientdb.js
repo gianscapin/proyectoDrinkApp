@@ -1,5 +1,7 @@
 const connection = require('./connection');
 let objectId = require('mongodb').ObjectId;
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const getClients = async () =>{
     const clientMongo = await connection.getConnection();
@@ -18,9 +20,34 @@ const getClient = async (id) =>{
 
 const addClient = async (client) => {
     const clientMongo = await connection.getConnection();
+
+    client.password = await bcrypt.hash(user.password,8);
+
     const result = await clientMongo.db('drinkApp').collection('clients').insertOne(client)
 
     return result;
+}
+
+const findByCredentials = async(email, password) => {
+    const clientMongo = await connection.getConnection();
+
+    const client = await clientMongo.db('drinkApp').collection('clients').findOne({email:email});
+
+    if(!client){
+        throw new Error('Credenciales no válidas.');
+    }
+    const clientPassword = await bcrypt.compare(password, client.password);
+    
+    if(!clientPassword){
+        throw new Error('Credenciales no válidas.');
+    }
+
+    return client;
+}
+
+const generateAuthToken = client => {
+    const token = jwt.sign({_id:client._id},'ultrasecreta',{expiresIn:'2h'});
+    return token;
 }
 
 const updateClient = async (client) => {
@@ -50,4 +77,4 @@ const deleteClient = async (id) =>{
 }
 
 
-module.exports = {getClient, getClients, addClient, updateClient, deleteClient};
+module.exports = {getClient, getClients, addClient, updateClient, deleteClient, findByCredentials, generateAuthToken};

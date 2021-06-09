@@ -21,6 +21,7 @@ router.post('/', async (req,res) => {
     const schema = joi.object({
         fullName: joi.string().min(3).required(),
         email: joi.string().min(1).max(10000000).required(),
+        password:joi.string().min(1).max(10000000).required(),
         phone: joi.number().min(3).required(),
         direction: joi.string().min(3).required(),
         dateOfBirth: joi.string().min(3).required(),
@@ -35,6 +36,20 @@ router.post('/', async (req,res) => {
         res.status(200).send('Cliente agregado.');
     };
 });
+
+// LOG
+
+router.post('/login', async(req,res) => {
+    try {
+        const client = await dataClient.findByCredentials(req.body.email, req.body.password);
+
+        const token = dataClient.generateAuthToken(client);
+
+        res.send({user,token});
+    } catch (error) {
+        res.status(401).send(error.message);
+    }
+})
 
 router.put('/:id', async (req,res) => {
     const schema = joi.object({
