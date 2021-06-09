@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const dataClient = require('../data/clientdb');
 const joi = require('joi');
+const auth = require('../middleware/auth');
 
-router.get('/', async(req, res, next) => {
+router.get('/',auth, async(req, res, next) => {
     let clients = await dataClient.getClients();
     res.json(clients);
 });
@@ -45,7 +46,7 @@ router.post('/login', async(req,res) => {
 
         const token = dataClient.generateAuthToken(client);
 
-        res.send({user,token});
+        res.send({client,token});
     } catch (error) {
         res.status(401).send(error.message);
     }

@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken');
-require('dontenv').config();
 
 const auth = (req,res,next) => {
     try {
-        const token = req.header('Authorization').replace('Bearer ',' ');
+        const token = req.header('Authorization').replace('Bearer ','');
         const user = jwt.verify(token,'ultrasecreta');
         console.log(user);
         next();
