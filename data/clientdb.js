@@ -21,7 +21,7 @@ const getClient = async (id) =>{
 const addClient = async (client) => {
     const clientMongo = await connection.getConnection();
 
-    client.password = await bcrypt.hash(user.password,8);
+    client.password = await bcrypt.hash(client.password,8);
 
     const result = await clientMongo.db('drinkApp').collection('clients').insertOne(client)
 
