@@ -94,17 +94,15 @@ Para agregar un cliente se tendrá que enviar un json con este cuerpo:
 
      {
     
-	    "name":"", //nombre del producto
+	    "fullName":"", // nombre completo del cliente
 	    
-	    "price":, //precio unitario
+	    "email":, // email del cliente
 	    
-	    "description":"", // descripción del producto
+	    "phone":, // numero de telefono del cliente
 	    
-	    "brand":"", // marca del producto
-	    
-	    "category":"", // categoría del producto
-	    
-	    "alcohol": true / false //tiene alcohol
+	    "direction":, // direccion del cliente
+
+	    "dateOfBirth":, // fecha de nacimiento del cliente
     
     }
 Se agregará a nuestra base de datos MongoDB en la colección *clients*.
