@@ -4,7 +4,7 @@ const dataSale = require('../data/salesdb')
 const joi = require('joi');
 
 // /api/sales
-router.get('/',auth,async(req,res,next)=>{
+router.get('/',async(req,res,next)=>{
     let sales = await dataSale.getSales();
     res.json(sales);
 })
