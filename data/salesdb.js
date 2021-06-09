@@ -11,7 +11,7 @@ const getSales = async ()=>{
     return sales
 }
 
-const getSale = async ()=>{
+const getSale = async (id)=>{
     const clientMongo = await connection.getConnection()
 
     const sale = await clientMongo.db('drinkApp').collection('sales').findOne({_id:new objectId(id)})
