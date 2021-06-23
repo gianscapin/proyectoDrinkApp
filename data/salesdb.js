@@ -36,8 +36,8 @@ const updateSale = async (sale)=>{
         $set:{
             client: sale.client,
             salesPrice: sale.salesPrice,
-            metodoDePago: sale.metodoDePago,
-            productos : sale.products 
+            payMethod: sale.metodoDePago,
+            products : sale.products 
         }
        
     }

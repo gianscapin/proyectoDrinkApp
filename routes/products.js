@@ -13,6 +13,34 @@ router.get('/', async(req, res, next) => {
     res.json(products);
 });
 
+router.get('/expensive', async(req,res,next) => {
+    let products = await dataProduct.getProducts();
+    let price = 0;
+    let product = {
+        name:'',
+        price:'',
+        category:''
+    }
+    products.forEach(prod => {
+        if(prod.price>price){
+            price = prod.price;
+            product = {
+                name:prod.name,
+                price:prod.price,
+                category:prod.category
+            }
+        }
+    });
+
+    res.json(product);
+});
+
+router.get('/categories', async(req,res,next) => {
+    let result = await dataProduct.getCategories();
+    res.json(result);
+
+});
+
 router.get('/:id', async(req,res) => {
     const product = await dataProduct.getProduct(req.params.id);
     if(product){
@@ -29,8 +57,10 @@ router.post('/', async (req,res) => {
         name: joi.string().min(3).required(),
         price: joi.number().min(1).max(10000000).required(),
         description: joi.string().min(3).required(),
+        image: joi.string().min(3).required(),
         brand: joi.string().min(3).required(),
         category: joi.string().min(3).required(),
+        stock: joi.number().min(1).max(10000000).required(),
         alcohol: joi.boolean()  
     });
     const result = schema.validate(req.body);
@@ -53,6 +83,8 @@ router.put('/:id', async (req,res) => {
         description: joi.string().min(3).required(),
         brand: joi.string().min(3).required(),
         category: joi.string().min(3).required(),
+        image: joi.string().min(3).required(),
+        stock: joi.number().min(1).max(10000000).required(),
         alcohol: joi.boolean()  
     });
     const result = schema.validate(req.body);

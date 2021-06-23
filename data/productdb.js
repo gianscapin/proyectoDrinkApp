@@ -1,6 +1,7 @@
 const connection = require('./connection');
 let objectId = require('mongodb').ObjectId;
 
+
 const getProducts = async () =>{
     const clientMongo = await connection.getConnection();
     const products = await clientMongo.db('drinkApp')
@@ -16,6 +17,32 @@ const getProduct = async (id) =>{
     return products;                    
 }
 
+const getCategories = async () => {
+
+
+    const agg = [
+        {
+          '$group': {
+            '_id': '$category', 
+            'count': {
+              '$sum': 1
+            }, 
+            'averagePrice': {
+              '$avg': '$price'
+            }
+          }
+        }
+      ];
+      
+    const clientMongo = await connection.getConnection();
+
+    const products = clientMongo.db('drinkApp').collection('products').aggregate(agg).toArray();
+
+    return products;
+
+
+}
+
 const addProduct = async (product) =>{
     const clientMongo = await connection.getConnection();
     const result = await clientMongo.db('drinkApp')
@@ -23,6 +50,7 @@ const addProduct = async (product) =>{
                         .insertOne(product)
     return result;                    
 }
+
 
 const updateProduct = async (product) =>{
     const clientMongo = await connection.getConnection();
@@ -32,6 +60,8 @@ const updateProduct = async (product) =>{
         name: product.name,
         price: product.price,
         description: product.description,
+        image: product.image,
+        stock: product.stock,
         brand: product.brand,
         category: product.category,
         alcohol: product.alcohol
@@ -51,4 +81,4 @@ const deleteProduct = async (id) =>{
     return result;                    
 }
 
-module.exports = {getProduct, getProducts, addProduct, updateProduct, deleteProduct};
+module.exports = {getProduct, getProducts,getCategories, addProduct, updateProduct, deleteProduct};
