@@ -5,10 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const getClients = async () =>{
     const clientMongo = await connection.getConnection();
-    const clients = await clientMongo.db('drinkApp')
-                        .collection('clients')
-                        .find()
-                        .toArray();
+    const clients = await clientMongo.db('drinkApp').collection('clients').find().toArray();
     return clients;                    
 }
 
