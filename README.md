@@ -37,6 +37,10 @@ Para agregar un producto se tendrá que enviar un json con este cuerpo:
 	    "brand":"", // marca del producto
 	    
 	    "category":"", // categoría del producto
+
+		"stock":, // cantidad stock
+
+		"image":"", // imagen del producto
 	    
 	    "alcohol": true / false //tiene alcohol
     
@@ -72,6 +76,8 @@ Se tendrá que saber el id del producto para modificarlo y completar el json de 
 
 ---
 **Eliminar producto**
+
+
 Endpoint: `/api/products/:idProducto`
 
 Método: deleteProduct(idProducto) - **DELETE**
@@ -81,6 +87,8 @@ Recibiremos una respuesta positiva (status 200) comunicando que el producto ha s
 
 ---
 **Eliminar producto**
+
+
 Endpoint: `/api/products/:idProducto`
 
 Método: deleteProduct(idProducto) - **DELETE**
@@ -90,6 +98,8 @@ Recibiremos una respuesta positiva (status 200) comunicando que el producto ha s
 
 ---
 **Producto con el precio más alto**
+
+
 Endpoint: `/api/products/expensive`
 
 Método: getProducts() - **GET**
@@ -98,6 +108,8 @@ Para saber cuál bebida tiene el precio más caro. Mostrará el nombre de la beb
 
 ---
 **Cantidad de bebidas y precio promedio por categoría**
+
+
 Endpoint: `/api/products/categories`
 
 Método: getCategories() - **GET**
