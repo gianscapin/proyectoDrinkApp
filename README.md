@@ -38,9 +38,9 @@ Para agregar un producto se tendrá que enviar un json con este cuerpo:
 	    
 	    "category":"", // categoría del producto
 
-		"stock":, // cantidad stock
+	    "stock":, // cantidad stock
 
-		"image":"", // imagen del producto
+            "image":"", // imagen del producto
 	    
 	    "alcohol": true / false //tiene alcohol
     
