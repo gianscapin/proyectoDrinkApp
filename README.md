@@ -119,10 +119,9 @@ Endpoint: `/api/clients`
 
 Método: getClients() - **GET**
 
-Utilizando el get en nuestro endpoint nuestra api devolverá en formato json todos los productos almacenados en nuestra base de datos. Por medio de la autenticación que se explicará más adelante.
+Utilizando el get en nuestro endpoint nuestra api devolverá en formato json todos los clientes almacenados en nuestra base de datos. Por medio de la autenticación que se explicará más adelante.
 
 ---
-
   
 
 **Modificar cliente**
@@ -142,6 +141,80 @@ Método: deleteClient(idClient) - **DELETE**
 
 Para eliminar un cliente se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del cliente a eliminar.
 Recibiremos una respuesta positiva (status 200) comunicando que el cliente ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un cliente con el id solicitado.
+
+
+### Sales
+
+Para realizar el registro de la compra, la aplicación cuenta con las siguientes funcionalidades:
+  
+### Casos de uso
+
+**Agregar sale**
+
+Endpoint:  `/api/sale`
+
+Método: addSale() - **POST**
+
+Para agregar una venta se tendrá que enviar un json con este cuerpo: 
+
+     {
+    
+	    "client":"", //nombre del cliente
+	    
+	    "salesPrice":, //precio total de la compra
+	    
+	    "payMethod":"", // metodo de pago
+	    
+	    "products":"", // productos que conforman la compra 
+	
+    }
+
+Se agregará a nuestra base de datos MongoDB en la colección *sales*.
+
+  
+---
+  
+
+**Obtener venta**
+
+Endpoint: `/api/:idsale`
+
+Método: getSale(sale) - **GET**
+
+Utilizando el get en nuestro endpoint nuestra api devolverá en formato json la venta seleccionada almacenada en nuestra base de datos.
+
+---
+
+**Obtener ventas**
+
+Endpoint: `/api/sales`
+
+Método: getSales() - **GET**
+
+Utilizando el get en nuestro endpoint nuestra api devolverá en formato json todos las ventas almacenadas en nuestra base de datos.
+
+---
+  
+
+**Modificar productos**
+
+
+Endpoint: `/api/products/:idProducto`
+
+Método: updateProduct(product) - **PUT**
+
+Se tendrá que saber el id del producto para modificarlo y completar el json de la misma manera que en el caso de agregar el producto. Al completar y enviar el request habrá una respuesta positiva (status 200) donde nos comunicará el que producto ha sido modificado o una respuesta negativa (status 404) comuniucando que el producto no ha sido encontrado.
+
+---
+**Eliminar producto**
+Endpoint: `/api/products/:idProducto`
+
+Método: deleteProduct(idProducto) - **DELETE**
+
+Para eliminar un producto se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del producto a eliminar.
+Recibiremos una respuesta positiva (status 200) comunicando que el producto ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un producto con el id solicitado.
+
+--
 
 ## Autenticación
 
