@@ -142,6 +142,7 @@ Método: deleteClient(idClient) - **DELETE**
 Para eliminar un cliente se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del cliente a eliminar.
 Recibiremos una respuesta positiva (status 200) comunicando que el cliente ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un cliente con el id solicitado.
 
+---
 
 ### Sales
 
@@ -196,23 +197,26 @@ Utilizando el get en nuestro endpoint nuestra api devolverá en formato json tod
 ---
   
 
-**Modificar productos**
+**Modificar venta**
 
 
-Endpoint: `/api/products/:idProducto`
+Endpoint: `/api/sales/:idSale`
 
-Método: updateProduct(product) - **PUT**
+Método: updateSale(sale) - **PUT**
 
-Se tendrá que saber el id del producto para modificarlo y completar el json de la misma manera que en el caso de agregar el producto. Al completar y enviar el request habrá una respuesta positiva (status 200) donde nos comunicará el que producto ha sido modificado o una respuesta negativa (status 404) comuniucando que el producto no ha sido encontrado.
+Se tendrá que saber el id de la venta para modificarla y completar el json de la misma manera que en el caso de agregar la venta. 
+Al completar y enviar el request habrá una respuesta positiva (status 200) donde nos comunicará que la venta ha sido modificada 
+o una respuesta negativa (status 404) comunicando que la venta no ha sido encontrado.
 
 ---
-**Eliminar producto**
-Endpoint: `/api/products/:idProducto`
+**Eliminar venta**
+Endpoint: `/api/sales/:idSale`
 
-Método: deleteProduct(idProducto) - **DELETE**
+Método: deleteSale(idsale) - **DELETE**
 
-Para eliminar un producto se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del producto a eliminar.
-Recibiremos una respuesta positiva (status 200) comunicando que el producto ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un producto con el id solicitado.
+Para eliminar una venta se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id de la venta a eliminar.
+Recibiremos una respuesta positiva (status 200) comunicando que la venta ha sido eliminada o una respuesta negativa (status 404) 
+en caso de no haber encontrado venta con el id solicitado.
 
 --
 
