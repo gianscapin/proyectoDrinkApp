@@ -37,6 +37,10 @@ Para agregar un producto se tendrá que enviar un json con este cuerpo:
 	    "brand":"", // marca del producto
 	    
 	    "category":"", // categoría del producto
+
+	    "stock":, // cantidad stock
+
+            "image":"", // imagen del producto
 	    
 	    "alcohol": true / false //tiene alcohol
     
@@ -72,12 +76,45 @@ Se tendrá que saber el id del producto para modificarlo y completar el json de 
 
 ---
 **Eliminar producto**
+
+
 Endpoint: `/api/products/:idProducto`
 
 Método: deleteProduct(idProducto) - **DELETE**
 
 Para eliminar un producto se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del producto a eliminar.
 Recibiremos una respuesta positiva (status 200) comunicando que el producto ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un producto con el id solicitado.
+
+---
+**Eliminar producto**
+
+
+Endpoint: `/api/products/:idProducto`
+
+Método: deleteProduct(idProducto) - **DELETE**
+
+Para eliminar un producto se tendrá que hacer un request a nuestra api con este endpoint, sabiendo el id del producto a eliminar.
+Recibiremos una respuesta positiva (status 200) comunicando que el producto ha sido eliminado o una respuesta negativa (status 404) en caso de no haber encontrado un producto con el id solicitado.
+
+---
+**Producto con el precio más alto**
+
+
+Endpoint: `/api/products/expensive`
+
+Método: getProducts() - **GET**
+
+Para saber cuál bebida tiene el precio más caro. Mostrará el nombre de la bebida, el precio y su categoría.
+
+---
+**Cantidad de bebidas y precio promedio por categoría**
+
+
+Endpoint: `/api/products/categories`
+
+Método: getCategories() - **GET**
+
+Este get devolverá un json con cada categoría, la cantidad de bebidas con esa categoría y el precio promedio.
 
 --
 
@@ -210,6 +247,8 @@ o una respuesta negativa (status 404) comunicando que la venta no ha sido encont
 
 ---
 **Eliminar venta**
+
+
 Endpoint: `/api/sales/:idSale`
 
 Método: deleteSale(idsale) - **DELETE**
